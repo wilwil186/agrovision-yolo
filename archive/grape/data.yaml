@@ -1,0 +1,10 @@
+path: /kaggle/input/datasets/yusufmurtaza01/grape-leaf-diseases/grape
+train: images/train
+val: images/val
+test: ''
+nc: 4
+names:
+- Grape__BlackRot
+- Grape__Esca
+- Grape__Healthy
+- Grape__LeafBlight
