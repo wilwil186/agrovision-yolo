@@ -1,5 +1,7 @@
 # Solución inicial YOLO para detección de condiciones visibles en hojas de uva
 
+> 📄 **Informe ejecutivo** (sin código): [`informe_ejecutivo.pdf`](./informe_ejecutivo.pdf)
+
 ## Objetivo
 
 Prueba de concepto para detectar condiciones visibles en hojas de uva usando YOLOv8 y convertir las predicciones en alertas operativas para priorizar revisiones técnicas.
