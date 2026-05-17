@@ -25,7 +25,7 @@ def prepare_yolo_dataset(raw_path: Path, processed_path: Path):
             else:
                 print(f"  AVISO: No existe {src}")
 
-    yaml_content = f"""path: {processed_path.resolve()}
+    yaml_content = f"""path: .
 train: images/train
 val: images/val
 

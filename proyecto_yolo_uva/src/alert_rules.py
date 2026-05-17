@@ -39,7 +39,7 @@ def apply_alerts(predictions_csv: Path):
         return
 
     predictions_by_image = df.groupby("image_path").apply(
-        lambda g: g.to_dict("records")
+        lambda g: g.to_dict("records"), include_groups=False
     ).to_dict()
 
     alerts = []

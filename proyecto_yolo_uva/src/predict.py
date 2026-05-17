@@ -17,9 +17,12 @@ def draw_boxes(image_path, predictions, output_dir):
     if img is None:
         return
     for pred in predictions:
-        x1, y1, x2, y2 = pred["bbox"]
+        x1 = pred["bbox_x1"]
+        y1 = pred["bbox_y1"]
+        x2 = pred["bbox_x2"]
+        y2 = pred["bbox_y2"]
         conf = pred["confidence"]
-        cls_name = pred["class_name"]
+        cls_name = pred["predicted_class"]
         label = f"{cls_name} {conf:.2f}"
         cv2.rectangle(img, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
         cv2.putText(img, label, (int(x1), int(y1) - 5),

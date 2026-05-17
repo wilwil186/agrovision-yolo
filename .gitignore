@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# YOLO generated
+runs/
+
+# Processed data (copy of raw)
+proyecto_yolo_uva/data/processed/
+proyecto_yolo_uva/data/raw/
+
+# Large model weights
+proyecto_yolo_uva/yolov8n.pt
+proyecto_yolo_uva/outputs/training/**/*.pt
+
+# Model cache files
+proyecto_yolo_uva/data/processed/**/*.cache
+
+# Ultralytics runs
+runs/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Jupyter
+*.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -4,34 +4,7 @@ from pathlib import Path
 import pandas as pd
 from ultralytics import YOLO
 
-from config import DATASET_YAML, OUTPUTS, METRICS_DIR, CONFIDENCE_THRESHOLDS
-
-
-def evaluate_thresholds(results, thresholds):
-    print(f"\n--- Evaluación por umbrales de confianza ---")
-    rows = []
-    for thresh in thresholds:
-        metrics = results if hasattr(results, 'box') else None
-        if metrics is None:
-            continue
-        row = {
-            "umbral": thresh,
-            "precision": getattr(metrics, 'p', None),
-            "recall": getattr(metrics, 'r', None),
-            "mAP50": getattr(metrics, 'map50', None),
-            "mAP50-95": getattr(metrics, 'map', None),
-        }
-        rows.append(row)
-        print(f"\n  Umbral {thresh:.2f}:")
-        print(f"    Precision:  {row['precision']:.4f}" if row['precision'] else "    Precision: N/A")
-        print(f"    Recall:     {row['recall']:.4f}" if row['recall'] else "    Recall: N/A")
-        print(f"    mAP50:      {row['mAP50']:.4f}" if row['mAP50'] else "    mAP50: N/A")
-
-    if rows:
-        df = pd.DataFrame(rows)
-        csv_path = METRICS_DIR / "threshold_evaluation.csv"
-        df.to_csv(csv_path, index=False)
-        print(f"\n  Resultados guardados en: {csv_path}")
+from config import DATASET_YAML, METRICS_DIR
 
 
 def main():
@@ -59,25 +32,39 @@ def main():
     print(f"  Data:    {data_yaml}")
 
     model = YOLO(str(model_path))
-
     results = model.val(data=str(data_yaml))
-    print(f"\n  mAP50:    {results.box.map50:.4f}")
-    print(f"  mAP50-95: {results.box.map:.4f}")
-    print(f"  Precision: {results.box.p:.4f}")
-    print(f"  Recall:    {results.box.r:.4f}")
+
+    class_names = ["Grape__BlackRot", "Grape__Esca", "Grape__Healthy", "Grape__LeafBlight"]
+    print(f"\n  Métricas globales:")
+    print(f"    mAP50:    {results.box.map50:.4f}")
+    print(f"    mAP50-95: {results.box.map:.4f}")
+
+    P_mean = float(results.box.p.mean()) if hasattr(results.box.p, 'mean') else float(results.box.p)
+    R_mean = float(results.box.r.mean()) if hasattr(results.box.r, 'mean') else float(results.box.r)
+    print(f"    Precision: {P_mean:.4f}")
+    print(f"    Recall:    {R_mean:.4f}")
+
+    print(f"\n  Métricas por clase:")
+    class_data = []
+    for cls_idx, name in enumerate(class_names):
+        p_cls, r_cls, m50_cls, m95_cls = results.box.class_result(cls_idx)
+        p_cls, r_cls, m50_cls, m95_cls = float(p_cls), float(r_cls), float(m50_cls), float(m95_cls)
+        class_data.append({"class": name, "precision": round(p_cls, 4), "recall": round(r_cls, 4), "mAP50": round(m50_cls, 4), "mAP50-95": round(m95_cls, 4)})
+        print(f"    {name}:")
+        print(f"      Precision: {p_cls:.4f}, Recall: {r_cls:.4f}, mAP50: {m50_cls:.4f}, mAP50-95: {m95_cls:.4f}")
+
+    df_classes = pd.DataFrame(class_data)
+    df_classes.to_csv(METRICS_DIR / "per_class_metrics.csv", index=False)
 
     metrics_summary = {
-        "mAP50": results.box.map50,
-        "mAP50-95": results.box.map,
-        "precision": results.box.p,
-        "recall": results.box.r,
+        "mAP50": float(results.box.map50),
+        "mAP50-95": float(results.box.map),
+        "precision": P_mean,
+        "recall": R_mean,
     }
     df_summary = pd.DataFrame([metrics_summary])
-    csv_path = METRICS_DIR / "evaluation_metrics.csv"
-    df_summary.to_csv(csv_path, index=False)
-    print(f"\n  Métricas guardadas en: {csv_path}")
-
-    evaluate_thresholds(results, CONFIDENCE_THRESHOLDS)
+    df_summary.to_csv(METRICS_DIR / "evaluation_metrics.csv", index=False)
+    print(f"\n  Métricas guardadas en: {METRICS_DIR}")
 
     print(f"\n{'='*60}")
     print("EVALUACIÓN COMPLETADA")

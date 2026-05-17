@@ -1,4 +1,4 @@
-path: /home/wilson/Documentos/agrovision-yolo/proyecto_yolo_uva/data/raw
+path: .
 train: grape/images/train
 val: grape/images/val
 

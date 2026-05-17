@@ -1,0 +1,5 @@
+class,precision,recall,mAP50,mAP50-95
+Grape__BlackRot,0.9982,0.8897,0.9503,0.8947
+Grape__Esca,0.9958,1.0,0.995,0.9539
+Grape__Healthy,0.9055,0.8211,0.9174,0.8111
+Grape__LeafBlight,0.9953,0.9827,0.995,0.9656

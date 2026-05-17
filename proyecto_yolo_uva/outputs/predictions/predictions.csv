@@ -1,0 +1,26 @@
+image_path,predicted_class,class_id,confidence,bbox_x1,bbox_y1,bbox_x2,bbox_y2
+pd_train_train_00662.jpg,Grape__Healthy,2,0.9134,30.81,177.31,402.5,532.35
+pd_train_train_00662.jpg,Grape__Healthy,2,0.9108,481.35,947.48,1516.39,2031.93
+pd_train_train_00662.jpg,Grape__Healthy,2,0.6075,107.77,521.75,456.1,878.0
+pd_train_train_00662.jpg,Grape__Healthy,2,0.5213,105.43,533.42,587.52,881.26
+pd_train_train_00662.jpg,Grape__Healthy,2,0.2701,468.92,91.64,1319.05,523.18
+pd_train_train_00662.jpg,Grape__Healthy,2,0.2541,297.22,1123.65,514.25,1398.13
+pv_GRBR_image (1096).jpg,Grape__BlackRot,0,0.9794,15.35,0.07,243.15,255.2
+pv_GRBR_image (182).jpg,Grape__BlackRot,0,0.9582,3.69,0.26,249.71,255.77
+pv_GRBR_image (460).jpg,Grape__BlackRot,0,0.9681,0.0,0.45,243.95,253.14
+pv_GRBR_image (882).jpg,Grape__BlackRot,0,0.932,6.97,15.22,250.87,254.54
+pv_GRBR_image (932).jpg,Grape__BlackRot,0,0.9661,14.95,0.1,236.05,255.34
+pv_GRBR_image (938).jpg,Grape__BlackRot,0,0.9548,13.61,13.83,235.99,254.95
+pv_GRES_image (1305).jpg,Grape__Esca,1,0.9605,0.0,0.16,255.5,252.17
+pv_GRES_image (1315).jpg,Grape__Esca,1,0.9644,10.42,0.16,247.65,254.14
+pv_GRES_image (460).jpg,Grape__Esca,1,0.9637,12.03,0.24,247.22,253.08
+pv_GRES_image (832).jpg,Grape__Esca,1,0.9511,0.0,2.46,255.91,250.59
+pv_GRES_image (942).jpg,Grape__Esca,1,0.9605,10.34,0.31,248.25,251.26
+pv_GRLB_image (130).jpg,Grape__LeafBlight,3,0.9485,11.39,0.16,252.89,249.16
+pv_GRLB_image (325).jpg,Grape__LeafBlight,3,0.9557,2.02,0.11,240.38,255.18
+pv_GRLB_image (374).jpg,Grape__LeafBlight,3,0.9371,7.95,0.27,254.97,255.06
+pv_GRLB_image (466).jpg,Grape__LeafBlight,3,0.9303,5.12,0.25,256.0,254.79
+pv_GRLB_image (597).jpg,Grape__LeafBlight,3,0.9551,11.98,0.21,248.26,253.87
+pv_GRLB_image (605).jpg,Grape__LeafBlight,3,0.9597,0.0,0.26,256.0,251.9
+pv_GRLB_image (768).jpg,Grape__LeafBlight,3,0.9301,29.63,2.44,248.77,254.92
+pv_GRLB_image (815).jpg,Grape__LeafBlight,3,0.9524,0.0,0.3,255.35,254.91
